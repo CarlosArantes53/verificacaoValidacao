@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservar Veículo</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 10px;
+            padding: 0;
+            background-color: #f2f2f2;
+            display: grid;
+            grid-template-columns: auto 1fr;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"],
+        button[type="button"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        button[type="submit"]:hover,
+        button[type="button"]:hover {
+            background-color: #45a049;
+        }
+
+        #cancelarBtn {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #cancelarBtn:hover {
+            background-color: #db2929;
+        }
+
+        #totalValue {
+            color: #333;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div>
+        <h2>Carro Alugado Nessas Datas</h2>
+        <ul id="datasAluguel"></ul>
+    </div>
+
+    <form id="formReserva">
+        <h2>Detalhes da reserva</h2>
+        <p id="detalhesVeiculo"></p>
+
+        <label for="dataInicio">Data de Início:</label>
+        <input type="date" id="dataInicio" name="dataInicio" required><br><br>
+
+        <label for="dataFim">Data de Término:</label>
+        <input type="date" id="dataFim" name="dataFim" required><br><br>
+
+        <p id="totalValue"></p>
+
+        <label for="metodoPagamento">Método de Pagamento:</label>
+        <select id="metodoPagamento" required>
+            <option value="debito">Cartão de Débito</option>
+            <option value="credito">Cartão de Crédito</option>
+            <option value="boleto">Boleto Bancário</option>
+        </select><br><br>
+        
+        <!-- Campos para informações de pagamento com cartão -->
+        <div id="infoCartao" class="hidden">
+            <label for="nomeCartao">Nome no Cartão:</label>
+            <input type="text" id="nomeCartao" name="nomeCartao" required><br><br>
+        
+            <label for="numeroCartao">Número do Cartão:</label>
+            <input type="text" id="numeroCartao" name="numeroCartao" required><br><br>
+        
+            <label for="validadeCartao">Data de Validade:</label>
+            <input type="text" id="validadeCartao" name="validadeCartao" placeholder="MM/AA" required><br><br>
+        
+            <label for="cvvCartao">CVV:</label>
+            <input type="text" id="cvvCartao" name="cvvCartao" required><br><br>
+        </div>
+        <!-- Fim dos campos para informações de pagamento com cartão -->
+        
+        <button type="button" id="reservarBtn">Reservar Veículo</button>
+        
+        <!-- Botão para baixar o boleto -->
+        <button type="button" id="baixarBoletoBtn" class="hidden">Baixar Boleto</button>
+        
+        <button id="cancelarBtn">Cancelar</button>
+        
+    </form>
+
+    <script src="firebase/firebase-config.js" type="module"></script>
+    <script src="app/reservar-veiculo.js" type="module"></script>
+</body>
+</html>
