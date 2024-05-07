@@ -4,71 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Selecionar Veículo</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 10px;
-            padding: 0;
-            background-color: #f2f2f2;
-            display: grid;
-            place-items: center;
-        }
-
-        h2 {
-            color: #333;
-        }
-
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            margin-bottom: 20px;
-            margin-top: 20px;
-        }
-
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-
-        tbody tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-
-        tbody tr:nth-child(odd) {
-            background-color: white;
-        }
-
-        .selected {
-            background-color: #c5c5c5 !important;
-        }
-
-        button {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        button:disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
-    <h2>Selecione um Veículo</h2>
+    <h3>Selecione um Veículo</h3>
     <table id="veiculosTable">
         <thead>
             <tr>
@@ -78,26 +17,7 @@
                 <th>Placa</th>
             </tr>
         </thead>
-        <tbody id="veiculosTableBody">
-            <tr data-id="1">
-                <td>Ford</td>
-                <td>Fiesta</td>
-                <td>2023</td>
-                <td>ABC-1234</td>
-            </tr>
-            <tr data-id="2">
-                <td>Chevrolet</td>
-                <td>Onix</td>
-                <td>2022</td>
-                <td>DEF-5678</td>
-            </tr>
-            <tr data-id="3">
-                <td>Toyota</td>
-                <td>Corolla</td>
-                <td>2023</td>
-                <td>GHI-9012</td>
-            </tr>
-        </tbody>
+        <tbody id="veiculosTableBody"></tbody>
     </table>
 
     <button id="confirmarSelecaoBtn" disabled>Confirmar Seleção</button>
