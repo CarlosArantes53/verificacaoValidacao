@@ -4,104 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservar Veículo</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 10px;
-            padding: 0;
-            background-color: #f2f2f2;
-            display: grid;
-            grid-template-columns: auto 1fr;
-        }
-
-        h2 {
-            color: #333;
-        }
-
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
-
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-
-        form {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #333;
-        }
-
-        input[type="date"],
-        select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-
-        button[type="submit"],
-        button[type="button"] {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-right: 10px;
-        }
-
-        button[type="submit"]:hover,
-        button[type="button"]:hover {
-            background-color: #45a049;
-        }
-
-        #cancelarBtn {
-            background-color: #f44336;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        #cancelarBtn:hover {
-            background-color: #db2929;
-        }
-
-        #totalValue {
-            color: #333;
-            font-size: 18px;
-            margin-top: 20px;
-        }
-
-        .hidden {
-            display: none;
-        }
-    </style>
+    <link rel="stylesheet" href="Style/style.css">
 </head>
 <body>
 
@@ -122,12 +25,17 @@
 
         <p id="totalValue"></p>
 
-        <label for="metodoPagamento">Método de Pagamento:</label>
-        <select id="metodoPagamento" required>
+        <select id="metodoPagamento">
+            <option value="" selected disabled>Selecione um método de pagamento</option>
             <option value="debito">Cartão de Débito</option>
             <option value="credito">Cartão de Crédito</option>
             <option value="boleto">Boleto Bancário</option>
         </select><br><br>
+
+        <!-- Botão para baixar o boleto -->
+        <div id="baixarBoletoBtn" class="hidden">
+            <button id="baixarBoletoBtn">Baixar Boleto</button>
+        </div>
         
         <!-- Campos para informações de pagamento com cartão -->
         <div id="infoCartao" class="hidden">
@@ -146,10 +54,7 @@
         <!-- Fim dos campos para informações de pagamento com cartão -->
         
         <button type="button" id="reservarBtn">Reservar Veículo</button>
-        
-        <!-- Botão para baixar o boleto -->
-        <button type="button" id="baixarBoletoBtn" class="hidden">Baixar Boleto</button>
-        
+                
         <button id="cancelarBtn">Cancelar</button>
         
     </form>
