@@ -17,7 +17,7 @@ const db = getFirestore(app);
 const addDocToCollection = async () => {
     try {
         const docRef = await addDoc(collection(db, "integracao"), {
-            testField: "IntegracaoFuncional"
+            testField: "integracao"
         });
         console.log("Teste de integração com o Firebase: ", docRef.id);
     } catch (e) {
