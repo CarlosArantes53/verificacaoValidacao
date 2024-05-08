@@ -8,56 +8,61 @@
 </head>
 <body>
 
-    <div>
+    <div class="container">
         <h2>Carro Alugado Nessas Datas</h2>
         <ul id="datasAluguel"></ul>
     </div>
 
-    <form id="formReserva">
-        <h2>Detalhes da reserva</h2>
-        <p id="detalhesVeiculo"></p>
+    <div class="container">
+        <form id="formReserva">
+            <h2>Detalhes da reserva</h2>
+            <p id="detalhesVeiculo"></p>
 
-        <label for="dataInicio">Data de Início:</label>
-        <input type="date" id="dataInicio" name="dataInicio" required><br><br>
+            <div class="input-container">
+                <label for="dataInicio">Data de Início:</label>
+                <input type="date" id="dataInicio" name="dataInicio" required>
+            </div>
 
-        <label for="dataFim">Data de Término:</label>
-        <input type="date" id="dataFim" name="dataFim" required><br><br>
+            <div class="input-container">
+                <label for="dataFim">Data de Término:</label>
+                <input type="date" id="dataFim" name="dataFim" required>
+            </div>
 
-        <p id="totalValue"></p>
+            <p id="totalValue"></p>
 
-        <select id="metodoPagamento">
-            <option value="" selected disabled>Selecione um método de pagamento</option>
-            <option value="debito">Cartão de Débito</option>
-            <option value="credito">Cartão de Crédito</option>
-            <option value="boleto">Boleto Bancário</option>
-        </select><br><br>
+            <div class="input-container">
+                <select id="metodoPagamento">
+                    <option value="" selected disabled>Selecione um método de pagamento</option>
+                    <option value="debito">Cartão de Débito</option>
+                    <option value="credito">Cartão de Crédito</option>
+                    <option value="boleto">Boleto Bancário</option>
+                </select>
+            </div>
 
-        <!-- Botão para baixar o boleto -->
-        <div id="baixarBoletoBtn" class="hidden">
-            <button id="baixarBoletoBtn">Baixar Boleto</button>
-        </div>
-        
-        <!-- Campos para informações de pagamento com cartão -->
-        <div id="infoCartao" class="hidden">
-            <label for="nomeCartao">Nome no Cartão:</label>
-            <input type="text" id="nomeCartao" name="nomeCartao" required><br><br>
-        
-            <label for="numeroCartao">Número do Cartão:</label>
-            <input type="text" id="numeroCartao" name="numeroCartao" required><br><br>
-        
-            <label for="validadeCartao">Data de Validade:</label>
-            <input type="text" id="validadeCartao" name="validadeCartao" placeholder="MM/AA" required><br><br>
-        
-            <label for="cvvCartao">CVV:</label>
-            <input type="text" id="cvvCartao" name="cvvCartao" required><br><br>
-        </div>
-        <!-- Fim dos campos para informações de pagamento com cartão -->
-        
-        <button type="button" id="reservarBtn">Reservar Veículo</button>
-                
-        <button id="cancelarBtn">Cancelar</button>
-        
-    </form>
+            <div id="baixarBoletoBtn" class="hidden">
+                <button id="baixarBoletoBtn">Baixar Boleto</button>
+            </div>
+            
+            <div id="infoCartao" class="hidden">
+                <label for="nomeCartao">Nome no Cartão:</label>
+                <input type="text" id="nomeCartao" name="nomeCartao" required>
+            
+                <label for="numeroCartao">Número do Cartão:</label>
+                <input type="text" id="numeroCartao" name="numeroCartao" required>
+            
+                <label for="validadeCartao">Data de Validade:</label>
+                <input type="text" id="validadeCartao" name="validadeCartao" placeholder="MM/AA" required>
+            
+                <label for="cvvCartao">CVV:</label>
+                <input type="text" id="cvvCartao" name="cvvCartao" required>
+            </div>
+
+            <button type="button" id="reservarBtn">Reservar Veículo</button>
+                    
+            <button id="cancelarBtn">Cancelar</button>
+            
+        </form>
+    </div>
 
     <script src="firebase/firebase-config.js" type="module"></script>
     <script src="app/reservar-veiculo.js" type="module"></script>

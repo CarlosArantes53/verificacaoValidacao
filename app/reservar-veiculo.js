@@ -1,10 +1,7 @@
-// Importando as funções necessárias do Firebase
 import { getFirestore, collection, addDoc, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
 
-// Obtendo uma referência para o Firestore
 const db = getFirestore();
 
-// Referências aos elementos HTML
 const detalhesVeiculo = document.getElementById('detalhesVeiculo');
 const datasAluguel = document.getElementById('datasAluguel');
 const reservarBtn = document.getElementById('reservarBtn');
@@ -14,7 +11,6 @@ const baixarBoletoBtn = document.getElementById('baixarBoletoBtn');
 
 let placaVeiculo;
 
-// Evento de carregamento da página
 window.addEventListener('load', async () => {
     placaVeiculo = sessionStorage.getItem('placaVeiculo');
     if (!placaVeiculo) {
@@ -25,13 +21,11 @@ window.addEventListener('load', async () => {
     }
 });
 
-// Evento de clique no botão "Cancelar"
 cancelarBtn.addEventListener('click', () => {
     sessionStorage.removeItem('placaVeiculo');
     window.location.href = 'selecionar-veiculo.html';
 });
 
-// Evento de clique no botão "Reservar Veículo"
 reservarBtn.addEventListener('click', async () => {
     const dataInicio = document.getElementById('dataInicio').value;
     const dataFim = document.getElementById('dataFim').value;
@@ -48,7 +42,6 @@ reservarBtn.addEventListener('click', async () => {
     }
 });
 
-// Função para mostrar as datas de aluguel do veículo
 async function mostrarDatasAluguel(placaVeiculo) {
     datasAluguel.innerHTML = '';
     try {
@@ -65,7 +58,6 @@ async function mostrarDatasAluguel(placaVeiculo) {
     }
 }
 
-// Função para verificar a disponibilidade do veículo nas datas selecionadas
 async function verificarDisponibilidade(placaVeiculo, dataInicio, dataFim) {
     try {
         const q = query(collection(db, "aluguel"), where("placa", "==", placaVeiculo));
@@ -92,7 +84,6 @@ async function verificarDisponibilidade(placaVeiculo, dataInicio, dataFim) {
     }
 }
 
-// Função para adicionar uma reserva no Firestore
 async function adicionarReserva(placaVeiculo, dataInicio, dataFim) {
     try {
         await addDoc(collection(db, "aluguel"), {
@@ -107,22 +98,33 @@ async function adicionarReserva(placaVeiculo, dataInicio, dataFim) {
     }
 }
 
-// Função para formatar a data no formato DD/MM/AAAA
 function formatarData(data) {
     const partesData = data.split('-');
     return `${partesData[2]}/${partesData[1]}/${partesData[0]}`;
 }
+    
+function calcularValorAluguel(dataInicio, dataFim) {
+    const inicio = new Date(dataInicio);
+    const fim = new Date(dataFim);
+    const diffTime = Math.abs(fim - inicio);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    const valorPorDia = 150;
+    return diffDays * valorPorDia;
+}
 
-// Evento de mudança na seleção do método de pagamento
 metodoPagamentoSelect.addEventListener('change', () => {
     const selectedOption = metodoPagamentoSelect.value;
+    const dataInicio = document.getElementById('dataInicio').value;
+    const dataFim = document.getElementById('dataFim').value;
 
     if (selectedOption === 'boleto') {
-        // Se a opção selecionada for boleto, oculte os campos do cartão e mostre o botão de boleto
+        const totalValueElement = document.getElementById('totalValue');
+        totalValueElement.textContent = `Total a pagar: R$ ${calcularValorAluguel(dataInicio, dataFim).toFixed(2)}`;
         infoCartaoDiv.classList.add('hidden');
         baixarBoletoBtn.classList.remove('hidden');
     } else {
-        // Caso contrário, mostre os campos do cartão e oculte o botão de boleto
+        const totalValueElement = document.getElementById('totalValue');
+        totalValueElement.textContent = `Total a pagar: R$ ${calcularValorAluguel(dataInicio, dataFim).toFixed(2)}`;
         infoCartaoDiv.classList.remove('hidden');
         baixarBoletoBtn.classList.add('hidden');
     }
