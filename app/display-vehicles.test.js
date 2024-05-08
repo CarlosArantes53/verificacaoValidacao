@@ -61,7 +61,7 @@ describe('displayVeiculos', () => {
         expect(document.createElement).toHaveBeenCalledTimes(2);
         expect(document.createElement).toHaveBeenCalledWith('tr');
         expect(document.createElement).toHaveBeenCalledWith('option');
-        expect(document.appendChild).toHaveBeenCalledTimes(4); // called twice for each vehicle
+        expect(document.appendChild).toHaveBeenCalledTimes(4);
     });
 
     test('deve lidar com erros ao obter documentos', async () => {
