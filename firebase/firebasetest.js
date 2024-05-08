@@ -16,10 +16,10 @@ const db = getFirestore(app);
 
 const addDocToCollection = async () => {
     try {
-        const docRef = await addDoc(collection(db, "veiculos"), {
-            testField: "marca"
+        const docRef = await addDoc(collection(db, "integracao"), {
+            testField: "IntegracaoFuncional"
         });
-        console.log("ID: ", docRef.id);
+        console.log("Teste de integração com o Firebase: ", docRef.id);
     } catch (e) {
         console.error("Erro de integração: ", e);
     }
