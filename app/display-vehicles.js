@@ -1,6 +1,6 @@
 import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
 
-const db = getFirestore();
+const db = getFirestore(); 
 const veiculosTableBody = document.getElementById('veiculosTableBody');
 const veiculoSelect = document.getElementById('veiculoSelect');
 
