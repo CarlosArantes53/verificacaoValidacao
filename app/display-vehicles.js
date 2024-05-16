@@ -5,7 +5,7 @@ const veiculosTableBody = document.getElementById('veiculosTableBody');
 const veiculoSelect = document.getElementById('veiculoSelect');
 
 async function displayVeiculos() {
-    veiculosTableBody.innerHTML = '';
+    veiculosTableBody.innerHTML = '';   
     veiculoSelect.innerHTML = '';
 
     try {
